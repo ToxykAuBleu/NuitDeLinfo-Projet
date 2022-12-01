@@ -42,7 +42,7 @@ function draw() {
  * @param {Integer} ms Nombre de temps à attendre en miliseconde
  * @returns Promise
  */
-function sleep(ms) {
+async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -54,14 +54,19 @@ class Entity {
         this.defence = def;
         this.objId = objId;
 
+        
         // Actualise la barre de vie en fonction de la vie actuelle
+        
         window.setInterval(() => {
-            var element = document.getElementById(`${this.objId["ClassDiv"]}-controler`);
-            var healthValueEl = element.getElementsByClassName("healthbar-value")[0];
-            var value = this.health/this.maxHealth;
-            healthValueEl.style.width = (value*element.clientWidth).toString()+"px";
-        }, 100)
+            if (document.getElementsByClassName(`${this.objId["ClassDiv"]}-sprite`).length != 0) {
+                var element = document.getElementById(`${this.objId["ClassDiv"]}-controler`);
+                var healthValueEl = element.getElementsByClassName("healthbar-value")[0];
+                var value = this.health/this.maxHealth;
+                healthValueEl.style.width = (value*element.clientWidth).toString()+"px";
+            }
+        }, 100);
     }
+    
 
     speak(textToSay) {
         console.log(textToSay);
@@ -70,9 +75,9 @@ class Entity {
     instantiateSprite(x, y) {
         var game = document.getElementById(this.objId["GameDiv"]);
         var sprite = document.createElement("div");
-        sprite.className = "heros-sprite";
-        sprite.id = "heros-sprite";
-        sprite.style.backgroundImage = `url("${this.objId["HeroSprite"]}")`;
+        sprite.className = `${this.objId["ClassDiv"]}-sprite`;
+        sprite.id = `${this.objId["ClassDiv"]}-sprite`;
+        sprite.style.backgroundImage = `url("${this.objId["Sprite"]}")`;
         sprite.style.position = "absolute";
         sprite.style.top = `${y}px`;
         sprite.style.left = `${x}px`;
@@ -88,6 +93,7 @@ class Entity {
     instantiateHealthBar(where) {
         const healthController = document.createElement("div");
         healthController.className = "healthbar-controler";
+        console.log(this.objId["ClassDiv"]);
         healthController.id = `${this.objId["ClassDiv"]}-controler`;
         const healthValue = document.createElement("div");
         healthValue.className = "healthbar-value";
@@ -109,14 +115,26 @@ class Heros extends Entity {
         super(health, atk, def, objId)
     }
 
-    useAttack(attackId) {
+    useAttack(attackId, ennemyId) {
         console.log("Heros utilise l'attaque :", this.attack[attackId].nom);
+        var ennemy = document.getElementById(ennemyId);
+        return ennemy;
     }
 }
 
 class Ennemy extends Entity { 
     constructor(health, atk, def, objId) {
         super(health, atk, def, objId)
+    }
+}
+
+class Game {
+    constructor(bgSource, ennemy) {
+        this.ennemyToBeat = ennemy
+    }
+
+    startRound(xE, yE) {
+        this.ennemyToBeat.instantiateSprite(xE, yE);
     }
 }
 
@@ -129,12 +147,26 @@ var Gaetan = new Heros(10,
     {
         GameDiv: "game",
         ClassDiv: "hb-heros",
-        HeroSprite: "sprite/perso.png",
+        Sprite: "sprite/perso.png",
 
     });
+
+var ennemy = new Ennemy(2, 3, 0, 
+    {
+        GameDiv: "game",
+        ClassDiv: "ennemy1",
+        Sprite: "sprite/Pablo34.png"
+    });
+
+async function game() {
+    instantiateSpeechBubble("mess1", "Salut moi c'est martin", 420, 200);
+    await sleep(4000);
+    instantiateSpeechBubble("mess2", "Et moi c'est josianne", 840, 200);
+}
 
 
 window.onload = (event) => {
     Gaetan.instantiateSprite(420, 200);
-    Gaetan.instantiateHealthBar("heros-sprite");
+    Gaetan.instantiateHealthBar("hb-heros-sprite");
 }
+
