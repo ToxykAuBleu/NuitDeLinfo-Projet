@@ -1,26 +1,3 @@
-/**
- * Instantie une barre de vie sur le site.
- * @param {String} id Id à donner au controleur de la barre de vie
- * @param {String} where Id de l'endroit à mettre la barre de vie
- */
-function instantiateHealthBar(id, x, y) {
-    const healthController = document.createElement("div");
-    healthController.className = "healthbar-controler";
-    healthController.id = `${id}-controler`;
-    const healthValue = document.createElement("div");
-    healthValue.className = "healthbar-value";
-    healthValue.id = `${id}-value`;
-    healthController.appendChild(healthValue);
-
-    healthController.style.position = "absolute";
-    healthController.style.top = `${y}px`;
-    healthController.style.left = `${x}px`;
-
-    const game = document.getElementById("game");
-    game.appendChild(healthController);
-
-}
-
 
 function instantiateSpeechBubble(id, text, x, y) {
     const bubble = document.createElement("div");
@@ -79,7 +56,7 @@ class Entity {
 
         // Actualise la barre de vie en fonction de la vie actuelle
         window.setInterval(() => {
-            var element = document.getElementById(`${this.objId}-controler`);
+            var element = document.getElementById(`${this.objId["ClassDiv"]}-controler`);
             var healthValueEl = element.getElementsByClassName("healthbar-value")[0];
             var value = this.health/this.maxHealth;
             healthValueEl.style.width = (value*element.clientWidth).toString()+"px";
@@ -94,13 +71,35 @@ class Entity {
         var game = document.getElementById(this.objId["GameDiv"]);
         var sprite = document.createElement("div");
         sprite.className = "heros-sprite";
+        sprite.id = "heros-sprite";
         sprite.style.backgroundImage = `url("${this.objId["HeroSprite"]}")`;
         sprite.style.position = "absolute";
         sprite.style.top = `${y}px`;
         sprite.style.left = `${x}px`;
 
-
         game.appendChild(sprite);
+    }
+
+    /**
+     * Instantie une barre de vie sur le site.
+     * @param {String} id Id à donner au controleur de la barre de vie
+     * @param {String} where Id de l'endroit à mettre la barre de vie
+     */
+    instantiateHealthBar(where) {
+        const healthController = document.createElement("div");
+        healthController.className = "healthbar-controler";
+        healthController.id = `${this.objId["ClassDiv"]}-controler`;
+        const healthValue = document.createElement("div");
+        healthValue.className = "healthbar-value";
+        healthValue.id = `${this.objId["ClassDiv"]}-value`;
+        healthController.appendChild(healthValue);
+
+        // healthController.style.position = "absolute";
+        // healthController.style.top = `${y}px`;
+        // healthController.style.left = `${x}px`;
+
+        const currentDiv = document.getElementById(where);
+        currentDiv.appendChild(healthController);
     }
 
 }
@@ -129,11 +128,13 @@ var Gaetan = new Heros(10,
     }, 2, 
     {
         GameDiv: "game",
+        ClassDiv: "hb-heros",
         HeroSprite: "sprite/perso.png",
 
     });
 
 
 window.onload = (event) => {
-    instantiateHealthBar("hb-heros", "Perso");
+    Gaetan.instantiateSprite(420, 200);
+    Gaetan.instantiateHealthBar("heros-sprite");
 }
