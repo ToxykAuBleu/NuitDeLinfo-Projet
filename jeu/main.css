@@ -3,15 +3,30 @@
     --dimension-healthbar-width: 80px;
 }
 
+
 div#game {
     height: 720px;
     width: 1280px;
+    background-size: cover;
 }
 
-.heros-sprite {
-    height: 40px;
-    width: 40px;
-    background-size: 100%;
+.container {
+    display: grid;
+    grid-template-columns: 1280/2px 1fr;
+    grid-template-rows: 1280/2px 1fr;
+    grid-template-areas: "h n" "a f";
+    height: 150px;
+    width: 1280px;
+  }
+
+.hb-heros-sprite {
+    height: 140px;
+    width: 140px;
+}
+
+.ennemy1-sprite {
+    height: 224px;
+    width: 263px;
 }
 
 .healthbar-controler {
@@ -22,8 +37,8 @@ div#game {
     border-color: black;
     border-style: inset;
     position: absolute;
-    top: 50px;
-    transform: translateX(-25%);
+    /* top: 50px;
+    transform: translateX(-25%); */
 }
 
 .healthbar-value {
