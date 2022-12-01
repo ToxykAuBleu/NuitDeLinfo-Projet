@@ -1,0 +1,19 @@
+:root {
+    --dimension-healthbar-height: 80px;
+    --dimension-healthbar-width: 800px;
+}
+
+.healthbar-controler {
+    height: var(--dimension-healthbar-height);
+    width: var(--dimension-healthbar-width);
+    background-color: gray;
+    border-width: 10px;
+    border-color: black;
+    border-style: inset;
+}
+
+.healthbar-value {
+    height: var(--dimension-healthbar-height);
+    width: calc(var(--dimension-healthbar-width));
+    background-color: lime;
+}
