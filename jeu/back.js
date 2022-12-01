@@ -34,8 +34,9 @@ class Entity {
         this.defence = def;
         this.objId = objId;
 
+        // Actualise la barre de vie en fonction de la vie actuelle
         window.setInterval(() => {
-            var element = document.getElementById(this.objId);
+            var element = document.getElementById(`${this.objId}-controler`);
             var healthValueEl = element.getElementsByClassName("healthbar-value")[0];
             var value = this.health/this.maxHealth;
             healthValueEl.style.width = (value*element.clientWidth).toString()+"px";
