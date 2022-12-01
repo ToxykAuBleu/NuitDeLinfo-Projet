@@ -3,7 +3,7 @@
  * @param {String} id Id à donner au controleur de la barre de vie
  * @param {String} where Id de l'endroit à mettre la barre de vie
  */
-function instantiateHealthBar(id, where) {
+function instantiateHealthBar(id, x, y) {
     const healthController = document.createElement("div");
     healthController.className = "healthbar-controler";
     healthController.id = `${id}-controler`;
@@ -12,8 +12,12 @@ function instantiateHealthBar(id, where) {
     healthValue.id = `${id}-value`;
     healthController.appendChild(healthValue);
 
-    const currentDiv = document.getElementById(where);
-    document.body.insertBefore(healthController, currentDiv);
+    healthController.style.position = "absolute";
+    healthController.style.top = `${y}px`;
+    healthController.style.left = `${x}px`;
+
+    const game = document.getElementById("game");
+    game.appendChild(healthController);
 
 }
 
@@ -86,12 +90,28 @@ class Entity {
         console.log(textToSay);
     }
 
+    instantiateSprite(x, y) {
+        var game = document.getElementById(this.objId["GameDiv"]);
+        var sprite = document.createElement("div");
+        sprite.className = "heros-sprite";
+        sprite.style.backgroundImage = `url("${this.objId["HeroSprite"]}")`;
+        sprite.style.position = "absolute";
+        sprite.style.top = `${y}px`;
+        sprite.style.left = `${x}px`;
+
+
+        game.appendChild(sprite);
+    }
 
 }
 
 class Heros extends Entity { 
     constructor(health, atk, def, objId) {
         super(health, atk, def, objId)
+    }
+
+    useAttack(attackId) {
+        console.log("Heros utilise l'attaque :", this.attack[attackId].nom);
     }
 }
 
@@ -103,9 +123,17 @@ class Ennemy extends Entity {
 
 var Gaetan = new Heros(10, 
     {
-        Att1: {nom: "Medicament 1", dmg: 2, worksOn: "id"},
-        Att2: {nom: "Medicament 2", dmg: 4, worksOn: "id"}
-    }, 2, "hb-heros");
+        Att1: {nom: "Medicament 1", dmg: 2, worksOn: ["id"]},
+        Att2: {nom: "Medicament 2", dmg: 4, worksOn: ["id"]},
+        Att3: {nom: "Medicament 3", dmg: 6, worksOn: ["id"]}
+    }, 2, 
+    {
+        GameDiv: "game",
+        HeroSprite: "sprite/perso.png",
+
+    });
+
+
 window.onload = (event) => {
     instantiateHealthBar("hb-heros", "Perso");
 }

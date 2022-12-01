@@ -1,6 +1,6 @@
 :root {
-    --dimension-healthbar-height: 80px;
-    --dimension-healthbar-width: 800px;
+    --dimension-healthbar-height: 20px;
+    --dimension-healthbar-width: 80px;
 }
 
 div#game {
@@ -8,11 +8,16 @@ div#game {
     width: 1280px;
 }
 
+.heros-sprite {
+    height: 100%;
+    width: 100%;
+}
+
 .healthbar-controler {
     height: var(--dimension-healthbar-height);
     width: var(--dimension-healthbar-width);
     background-color: gray;
-    border-width: 10px;
+    border-width: 5px;
     border-color: black;
     border-style: inset;
 }
