@@ -17,6 +17,45 @@ function instantiateHealthBar(id, where) {
 
 }
 
+
+function instantiateSpeechBubble(id, text, x, y) {
+    const bubble = document.createElement("div");
+    bubble.className = `speech-bubble-${id}`;
+    const speech = document.createElement("p");
+    speech.id = `speech-bubble`;
+    speech.innerHTML = text;
+    speech.style.position = "absolute";
+    speech.style.top = `${y}px`;
+    speech.style.left = `${x}px`;
+    bubble.appendChild(speech);
+
+    const currentDiv = document.getElementById("game");
+    // document.body.insertBefore(bubble, currentDiv);
+    currentDiv.appendChild(bubble)
+}
+
+/*
+function draw() {
+    var canvas = document.getElementById("game-canvas");
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        // ctx.fillStyle = 'rgb(200, 0, 0)';
+        // ctx.fillRect(10, 10, 50, 50);
+
+        // ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+        // ctx.fillRect(30, 30, 50, 50);
+
+        let img = new Image();
+        img.onload = function(){
+            ctx.drawImage(img, 200, 200);
+            ctx.font = '48px serif';
+            ctx.fillText("Salut à tous les amis c'est bleu40", 0, 0)
+        };
+        img.src = "sprite/bulle.png";
+    }
+}
+*/
+
 /**
  * Met en attente pendant ms miliseconde.
  * @param {Integer} ms Nombre de temps à attendre en miliseconde
@@ -62,6 +101,11 @@ class Ennemy extends Entity {
     }
 }
 
-var Gaetan = new Heros(10, 5, 2, "hb-heros");
-
-instantiateHealthBar("hb-heros", "Perso");
+var Gaetan = new Heros(10, 
+    {
+        Att1: {nom: "Medicament 1", dmg: 2, worksOn: "id"},
+        Att2: {nom: "Medicament 2", dmg: 4, worksOn: "id"}
+    }, 2, "hb-heros");
+window.onload = (event) => {
+    instantiateHealthBar("hb-heros", "Perso");
+}

@@ -3,6 +3,11 @@
     --dimension-healthbar-width: 800px;
 }
 
+div#game {
+    height: 720px;
+    width: 1280px;
+}
+
 .healthbar-controler {
     height: var(--dimension-healthbar-height);
     width: var(--dimension-healthbar-width);
@@ -16,4 +21,14 @@
     height: var(--dimension-healthbar-height);
     width: calc(var(--dimension-healthbar-width));
     background-color: lime;
+}
+
+p#speech-bubble {
+    /* width: 100%;
+    height: 100%;
+    object-fit: cover; */
+    position: absolute; 
+    background-image: url("sprite/bulle.png");
+    background-size: 100% 110%;
+    line-height: 40px;
 }
