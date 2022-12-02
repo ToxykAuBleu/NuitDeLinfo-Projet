@@ -279,10 +279,6 @@ async function game() {
         instantiateSpeechBubble("heros1", "Je ne peux pas fuir ! Je vais devoir combattre … mais comment ?", 250, 450, false);
         await sleep(3000);
         deleteSpeechBubble("heros1");
-
-        game = new Game(ennemy);
-        game.startRound(1000, 50, 85, 225);
-
     
         dr.instantiateSprite(300, 550);
         dr.instantiateHealthBar("docteur-sprite", 30, -50);
@@ -296,7 +292,55 @@ async function game() {
         await sleep(5000);
         deleteSpeechBubble("dr3");
 
+        game = new Game(ennemy);
+        game.startRound(1000, 50, 85, 225);
+
+        Gaetan.health = this.maxHealth;
+
     } else if (phase == 2) {
+
+        instantiateSpeechBubble("dr1", "Je te félicite, même si cela était très simple … Ce que tu viens de battre est un Papillomavirus.", 300, 470, false);
+        await sleep(5000);
+        deleteSpeechBubble("dr1");
+
+        instantiateSpeechBubble("dr2", "C’est un virus qui était très répandu auparavant mais qui n’est plus dangereux de nos jours.", 300, 470, false);
+        await sleep(5000);
+        deleteSpeechBubble("dr2");
+
+        instantiateSpeechBubble("dr3", "En effet, nous avons développé des anticorps contre celui-ci. Mais d’ailleurs jeune homme, quel est ton but ?", 300, 470, false);
+        await sleep(5000);
+        deleteSpeechBubble("dr3");
+
+        instantiateSpeechBubble("heros1", "Je veux retrouver la maladie qui a emporté ma femme et lui régler son compte !", 250, 450, false);
+        await sleep(4000);
+        deleteSpeechBubble("heros1");
+
+        instantiateSpeechBubble("dr4", "Je vois, allons à l’hôpital et décrivez moi cette maladie.", 300, 470, false);
+        await sleep(4000);
+        deleteSpeechBubble("dr4");
+
+        game.style.backgroundImage = `url("sprite/Hopital.png")`;
+
+        instantiateSpeechBubble("heros2", "*décrit la maladie*", 250, 450, false);
+        await sleep(4000);
+        deleteSpeechBubble("heros2");
+
+        instantiateSpeechBubble("dr5", "Hmm, je vois, c’était sûrement un VIH, l’un des virus les plus dangereux au monde.", 300, 470, false);
+        await sleep(4000);
+        deleteSpeechBubble("dr5");
+
+        instantiateSpeechBubble("dr6", "Il va falloir faire attention lors de ton combat. Suis-moi, je t'emmènerai à lui.", 300, 470, false);
+        await sleep(4000);
+        deleteSpeechBubble("dr6");
+
+        game.style.backgroundImage = `url("sprite/Prairie.png")`;
+
+
+
+        Gaetan.health = this.maxHealth;
+
+    } else if (phase == 3) {
+
     }
 }
 
