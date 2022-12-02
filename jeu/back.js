@@ -16,6 +16,10 @@ function instantiateSpeechBubble(id, text, x, y) {
 }
 
 function attackMenu() {
+    var attack = document.getElementsByClassName("attack")[0]
+    while (attack.firstChild) {
+        attack.removeChild(attack.firstChild);
+    }
     for (const [key, value] of Object.entries(Gaetan.attack)) {
         // console.log(key, value, value["nom"]);
         var button = document.createElement("button");
@@ -23,6 +27,7 @@ function attackMenu() {
         button.innerText = value["nom"];
         button.onclick = function() {
             console.log(value["nom"]);
+            Gaetan.useAttack(key, ennemyId)
             switchMenu();
         }
         var attack = document.getElementsByClassName("attack")[0];
@@ -30,11 +35,15 @@ function attackMenu() {
     };
 }
 
+function healAction() {
+    Gaetan.heal(ennemyId);
+}
+
 function switchMenu() {
     var select = document.getElementsByClassName("select")[0];
     var attack = document.getElementsByClassName("attack")[0];
-    console.log(select, attack);
     if (select.style.visibility == "visible") {
+        attackMenu();
         select.style.visibility = "hidden";
         attack.style.visibility = "visible";
         select.className = "menu-off select";
@@ -128,7 +137,20 @@ class Heros extends Entity {
 
     useAttack(attackId, ennemyId) {
         console.log("Heros utilise l'attaque :", this.attack[attackId].nom);
-        var ennemy = document.getElementById(ennemyId);
+        ennemy.health -= this.attack[attackId].dmg;
+        if (ennemy.health <= 0) {
+            document.getElementById(`${ennemyId}-sprite`).remove();
+        } else {
+            ennemy.attackPlayer();
+        }
+        return ennemy;
+    }
+
+    heal(ennemyId) {
+        console.log("Heros se soigne.");
+        Gaetan.health = this.maxHealth;
+        document.getElementsByClassName("select")[0].children[2].disabled = true;
+        // ennemy.attackPlayer();
         return ennemy;
     }
 }
@@ -136,6 +158,10 @@ class Heros extends Entity {
 class Ennemy extends Entity { 
     constructor(health, atk, def, objId) {
         super(health, atk, def, objId)
+    }
+
+    attackPlayer() {
+        Gaetan.health -= this.attack;
     }
 }
 
@@ -147,7 +173,6 @@ class Game {
 
     startRound(xE, yE, hxE, hyE) {
         var game = document.getElementById("game");
-        console.log(game);
         game.style.backgroundImage = `url("${this.bgSource}")`;
         this.ennemyToBeat.instantiateSprite(xE, yE);
         this.ennemyToBeat.instantiateHealthBar(this.ennemyToBeat.objId["ClassDiv"]+"-sprite", hxE, hyE);
@@ -168,22 +193,24 @@ var Gaetan = new Heros(10,
 
     });
 
+var ennemyId = "ennemy1";
+
 var ennemy = new Ennemy(10, 1, 0, 
     {
         GameDiv: "game",
         ClassDiv: "ennemy1",
-        Sprite: "sprite/Pablo34.png"
+        Sprite: "sprite/Papillomnavirus.png"
     });
 
 async function game() {
     // instantiateSpeechBubble("mess1", "Salut moi c'est martin", 420, 200);
     Gaetan.instantiateSprite(150, 550);
-    Gaetan.instantiateHealthBar("hb-heros-sprite", 50, -50);
+    Gaetan.instantiateHealthBar("hb-heros-sprite", 30, -50);
 
     // await sleep(4000);
 
     game = new Game("sprite/Cimetiere.png", ennemy);
-    game.startRound(1000, 50, 100, 225);
+    game.startRound(1000, 50, 85, 225);
     
 }
 
