@@ -10,14 +10,23 @@ div#game {
     background-size: cover;
 }
 
-.container {
+.menu-on {
     display: grid;
     grid-template-columns: 1280/2px 1fr;
     grid-template-rows: 1280/2px 1fr;
     grid-template-areas: "h n" "a f";
     height: 150px;
     width: 1280px;
-  }
+}
+
+.menu-off {
+    display: grid;
+    grid-template-columns: 1280/2px 1fr;
+    grid-template-rows: 1280/2px 1fr;
+    grid-template-areas: "h n" "a f";
+    height: 0px;
+    width: 0px;
+}
 
 .hb-heros-sprite {
     height: 140px;
