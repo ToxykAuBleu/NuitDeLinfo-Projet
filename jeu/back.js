@@ -192,14 +192,13 @@ class Ennemy extends Entity {
 }
 
 class Game {
-    constructor(bgSource, ennemy) {
-        this.bgSource = bgSource;
+    constructor(ennemy) {
         this.ennemyToBeat = ennemy
     }
 
     startRound(xE, yE, hxE, hyE) {
         var game = document.getElementById("game");
-        game.style.backgroundImage = `url("${this.bgSource}")`;
+        // game.style.backgroundImage = `url("${this.bgSource}")`;
         this.ennemyToBeat.instantiateSprite(xE, yE);
         this.ennemyToBeat.instantiateHealthBar(this.ennemyToBeat.objId["ClassDiv"]+"-sprite", hxE, hyE);
     }
@@ -229,18 +228,23 @@ var ennemy = new Ennemy(10, 1, 0,
     });
 
 async function game() {
+    var game = document.getElementById("game");
+    var pablo = new Heros(1, 1, 1, {
+        GameDiv: "game",
+        ClassDiv: "pablo",
+        Sprite: "sprite/Pablo34.png"
+    });
+    var dr = new Heros(1, 1, 1, {
+        GameDiv: "game",
+        ClassDiv: "docteur",
+        Sprite: "sprite/Doc_Shen.png"
+    })
     if (phase == 1) {
-        var game = document.getElementById("game");
         game.style.backgroundImage = `url("sprite/Cimetiere.png")`;
 
         Gaetan.instantiateSprite(150, 550);
         Gaetan.instantiateHealthBar("hb-heros-sprite", 30, -50);
 
-        var pablo = new Heros(1, 1, 1, {
-            GameDiv: "game",
-            ClassDiv: "pablo",
-            Sprite: "sprite/Pablo34.png"
-        });
         pablo.instantiateSprite(1050, 550);
         pablo.instantiateHealthBar("pablo-sprite", 20, -20);
 
@@ -251,17 +255,49 @@ async function game() {
 
         instantiateSpeechBubble("pablo1", "Tu devrais tourner la page, allons plutôt te changer les idées en ville.", 650, 500, true);
         await sleep(3000);
-        // document.getElementsByClassName("speech-bubble-pablo1")[0].remove();
         deleteSpeechBubble("pablo1");
 
         instantiateSpeechBubble("heros2", "Tu n’as pas tort …, j’essaierai de faire des efforts.", 200, 450, false);
         await sleep(3000);
-        document.getElementById("game").removeChild(document.getElementsByClassName("pablo-sprite")[0])
+        document.getElementById("game").removeChild(document.getElementsByClassName("pablo-sprite")[0]) // Supprimer pablo
         deleteSpeechBubble("heros2");
 
-        game = new Game("sprite/Cimetiere.png", ennemy);
+        game.style.backgroundImage = `url("sprite/Ruelle.png")`;
+        while (game.firstChild) {
+            game.removeChild(game.firstChild);
+        }
+
+        pablo.instantiateSprite(1050, 550);
+        pablo.instantiateHealthBar("pablo-sprite", 20, -20);
+        instantiateSpeechBubble("pablo1", "Oh mon dieu ! Qu’est-ce donc cela ?!?", 850, 500, true);
+        await sleep(3000);
+        deleteSpeechBubble("pablo1");
+        document.getElementById("game").removeChild(document.getElementsByClassName("pablo-sprite")[0])
+
+        Gaetan.instantiateSprite(150, 550);
+        Gaetan.instantiateHealthBar("hb-heros-sprite", 30, -50);
+        instantiateSpeechBubble("heros1", "Je ne peux pas fuir ! Je vais devoir combattre … mais comment ?", 250, 450, false);
+        await sleep(3000);
+        deleteSpeechBubble("heros1");
+
+        game = new Game(ennemy);
         game.startRound(1000, 50, 85, 225);
-    } else if (phase == 2) {}
+
+    
+        dr.instantiateSprite(300, 550);
+        dr.instantiateHealthBar("docteur-sprite", 30, -50);
+        instantiateSpeechBubble("dr1", "Bonjour, désolé de m’introduire si brusquement.", 300, 470, false);
+        await sleep(3000);
+        deleteSpeechBubble("dr1");
+        instantiateSpeechBubble("dr2", "Je me présente je suis le doc Shen, j’ai vu de quelle manière tu t’étais opposé à ce virus", 300, 470, false);
+        await sleep(3000);
+        deleteSpeechBubble("dr2");
+        instantiateSpeechBubble("dr3", "Je souhaite que tu m’aides à récolter des infos sur les autres IST. Mais d’abord,tue moi celui-ci avec tes propres moyens. ", 300, 470, false);
+        await sleep(5000);
+        deleteSpeechBubble("dr3");
+
+    } else if (phase == 2) {
+    }
 }
 
 

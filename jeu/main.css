@@ -31,16 +31,7 @@ div#game {
 
 
 
-
-
-
-
-.hb-heros-sprite {
-    height: 144px;
-    width: 144px;
-}
-
-.pablo-sprite {
+.pablo-sprite, .hb-heros-sprite, .docteur-sprite {
     height: 144px;
     width: 144px;
 }
