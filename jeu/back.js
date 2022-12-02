@@ -455,6 +455,14 @@ async function game() {
         instantiateSpeechBubble("dr1", "*de loin* Haha, ce n'est rien !", 250, 450, true);
         await sleep(3000);
         deleteSpeechBubble("dr1");
+        game = document.getElementById("game");
+        while (game.firstChild) {
+            game.removeChild(game.firstChild);
+        }
+
+        var final = document.createElement("h1");
+        final.innerText = "Mettez des préservatifs, ça sauve des vies. 👍";
+        game.appendChild(final);
     }
 }
 
