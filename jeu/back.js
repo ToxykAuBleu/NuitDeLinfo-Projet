@@ -15,27 +15,37 @@ function instantiateSpeechBubble(id, text, x, y) {
     currentDiv.appendChild(bubble)
 }
 
-/*
-function draw() {
-    var canvas = document.getElementById("game-canvas");
-    if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
-        // ctx.fillStyle = 'rgb(200, 0, 0)';
-        // ctx.fillRect(10, 10, 50, 50);
+function attackMenu() {
+    for (const [key, value] of Object.entries(Gaetan.attack)) {
+        // console.log(key, value, value["nom"]);
+        var button = document.createElement("button");
+        button.name = value["nom"];
+        button.innerText = value["nom"];
+        button.onclick = function() {
+            console.log(value["nom"]);
+            switchMenu();
+        }
+        var attack = document.getElementsByClassName("attack")[0];
+        attack.appendChild(button);
+    };
+}
 
-        // ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
-        // ctx.fillRect(30, 30, 50, 50);
-
-        let img = new Image();
-        img.onload = function(){
-            ctx.drawImage(img, 200, 200);
-            ctx.font = '48px serif';
-            ctx.fillText("Salut à tous les amis c'est bleu40", 0, 0)
-        };
-        img.src = "sprite/bulle.png";
+function switchMenu() {
+    var select = document.getElementsByClassName("select")[0];
+    var attack = document.getElementsByClassName("attack")[0];
+    console.log(select, attack);
+    if (select.style.visibility == "visible") {
+        select.style.visibility = "hidden";
+        attack.style.visibility = "visible";
+        select.className = "menu-off select";
+        attack.className = "menu-on attack";
+    } else {
+        attack.style.visibility = "hidden";
+        select.style.visibility = "visible";
+        attack.className = "menu-off attack"
+        select.className = "menu-on select"
     }
 }
-*/
 
 /**
  * Met en attente pendant ms miliseconde.
