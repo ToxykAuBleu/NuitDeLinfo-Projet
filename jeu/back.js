@@ -1,5 +1,5 @@
 
-function instantiateSpeechBubble(id, text, x, y) {
+function instantiateSpeechBubble(id, text, x, y, reverse) {
     const bubble = document.createElement("div");
     bubble.className = `speech-bubble-${id}`;
     const speech = document.createElement("p");
@@ -8,11 +8,19 @@ function instantiateSpeechBubble(id, text, x, y) {
     speech.style.position = "absolute";
     speech.style.top = `${y}px`;
     speech.style.left = `${x}px`;
+    if (reverse) {
+        // speech.style.transform = "scaleX(-1)";
+        speech.style.backgroundImage = `url("sprite/bulle_reverse.png")`;
+    }
     bubble.appendChild(speech);
 
     const currentDiv = document.getElementById("game");
     // document.body.insertBefore(bubble, currentDiv);
     currentDiv.appendChild(bubble)
+}
+
+function deleteSpeechBubble(id) {
+    document.getElementsByClassName(`speech-bubble-${id}`)[0].remove();
 }
 
 function attackMenu() {
@@ -37,6 +45,10 @@ function attackMenu() {
 
 function healAction() {
     Gaetan.heal(ennemyId);
+}
+
+function fleeAction() {
+    ennemy.flee();
 }
 
 function switchMenu() {
@@ -135,18 +147,22 @@ class Heros extends Entity {
         super(health, atk, def, objId)
     }
 
-    useAttack(attackId, ennemyId) {
+    async useAttack(attackId, ennemyId) {
         console.log("Heros utilise l'attaque :", this.attack[attackId].nom);
         ennemy.health -= this.attack[attackId].dmg;
         if (ennemy.health <= 0) {
             document.getElementById(`${ennemyId}-sprite`).remove();
+            await sleep(1000);
+            phase++;
+            game()
+            
         } else {
             ennemy.attackPlayer();
         }
         return ennemy;
     }
 
-    heal(ennemyId) {
+    heal() {
         console.log("Heros se soigne.");
         Gaetan.health = this.maxHealth;
         document.getElementsByClassName("select")[0].children[2].disabled = true;
@@ -162,6 +178,16 @@ class Ennemy extends Entity {
 
     attackPlayer() {
         Gaetan.health -= this.attack;
+        if (Gaetan.health <= 0) {
+            location.reload();
+        }
+    }
+
+    async flee() {
+        Gaetan.health -= this.attack;
+        instantiateSpeechBubble("fleemess", "Tu ne peux pas me fuir !", 1000, 10, true);
+        await sleep(2000);
+        document.getElementsByClassName("speech-bubble-fleemess")[0].remove();
     }
 }
 
@@ -181,10 +207,10 @@ class Game {
 
 var Gaetan = new Heros(10, 
     {
-        Att1: {nom: "Naturel", dmg: 2, worksOn: ["id"]},
-        Att2: {nom: "Benzatine pénicilline G", dmg: 0, worksOn: ["id"]},
-        Att3: {nom: "Zovirax", dmg: 0, worksOn: ["id"]},
-        Att4: {nom: "Vaccin Bexsero", dmg: 0, worksOn: ["id"]}
+        Att1: {nom: "Anti-corps", dmg: 2},
+        Att2: {nom: "Benzatine pénicilline G", dmg: 0},
+        Att3: {nom: "Zovirax", dmg: 0},
+        Att4: {nom: "Vaccin Bexsero", dmg: 0}
     }, 2, 
     {
         GameDiv: "game",
@@ -194,7 +220,7 @@ var Gaetan = new Heros(10,
     });
 
 var ennemyId = "ennemy1";
-
+var phase = 1;
 var ennemy = new Ennemy(10, 1, 0, 
     {
         GameDiv: "game",
@@ -203,15 +229,39 @@ var ennemy = new Ennemy(10, 1, 0,
     });
 
 async function game() {
-    // instantiateSpeechBubble("mess1", "Salut moi c'est martin", 420, 200);
-    Gaetan.instantiateSprite(150, 550);
-    Gaetan.instantiateHealthBar("hb-heros-sprite", 30, -50);
+    if (phase == 1) {
+        var game = document.getElementById("game");
+        game.style.backgroundImage = `url("sprite/Cimetiere.png")`;
 
-    // await sleep(4000);
+        Gaetan.instantiateSprite(150, 550);
+        Gaetan.instantiateHealthBar("hb-heros-sprite", 30, -50);
 
-    game = new Game("sprite/Cimetiere.png", ennemy);
-    game.startRound(1000, 50, 85, 225);
-    
+        var pablo = new Heros(1, 1, 1, {
+            GameDiv: "game",
+            ClassDiv: "pablo",
+            Sprite: "sprite/Pablo34.png"
+        });
+        pablo.instantiateSprite(1050, 550);
+        pablo.instantiateHealthBar("pablo-sprite", 20, -20);
+
+        instantiateSpeechBubble("heros1", "Pablo34, je jure de trouver la maladie qui a emporté ma femme ! Je jure de me venger !", 200, 450, false);
+        await sleep(3000);
+        // document.getElementsByClassName("speech-bubble-heros1")[0].remove();
+        deleteSpeechBubble("heros1");
+
+        instantiateSpeechBubble("pablo1", "Tu devrais tourner la page, allons plutôt te changer les idées en ville.", 650, 500, true);
+        await sleep(3000);
+        // document.getElementsByClassName("speech-bubble-pablo1")[0].remove();
+        deleteSpeechBubble("pablo1");
+
+        instantiateSpeechBubble("heros2", "Tu n’as pas tort …, j’essaierai de faire des efforts.", 200, 450, false);
+        await sleep(3000);
+        document.getElementById("game").removeChild(document.getElementsByClassName("pablo-sprite")[0])
+        deleteSpeechBubble("heros2");
+
+        game = new Game("sprite/Cimetiere.png", ennemy);
+        game.startRound(1000, 50, 85, 225);
+    } else if (phase == 2) {}
 }
 
 
