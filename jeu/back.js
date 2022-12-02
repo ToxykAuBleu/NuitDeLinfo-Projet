@@ -23,13 +23,14 @@ function attackMenu() {
         button.innerText = value["nom"];
         button.onclick = function() {
             console.log(value["nom"]);
+            switchMenu();
         }
         var attack = document.getElementsByClassName("attack")[0];
         attack.appendChild(button);
     };
 }
 
-function switchMain() {
+function switchMenu() {
     var select = document.getElementsByClassName("select")[0];
     var attack = document.getElementsByClassName("attack")[0];
     console.log(select, attack);
