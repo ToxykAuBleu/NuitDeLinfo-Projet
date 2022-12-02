@@ -3,6 +3,9 @@
     --dimension-healthbar-width: 80px;
 }
 
+body {
+    font-family: "Comic Sans MS";
+}
 
 div#game {
     height: 720px;
