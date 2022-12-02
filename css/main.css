@@ -6,3 +6,8 @@
 .carousel-item {
     text-align: center;
 }
+
+.carousel-item img {
+    width: auto;
+    height: 400px;
+}
