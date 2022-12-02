@@ -206,10 +206,10 @@ class Game {
 
 var Gaetan = new Heros(10, 
     {
-        Att1: {nom: "Anti-corps", dmg: 2},
-        Att2: {nom: "Benzatine pénicilline G", dmg: 0},
-        Att3: {nom: "Zovirax", dmg: 0},
-        Att4: {nom: "Vaccin Bexsero", dmg: 0}
+        Att1: {nom: "Anticorps", dmg: 2},
+        Att2: {nom: "Tacos", dmg: 0},
+        Att3: {nom: "Ruban adhésif", dmg: 0},
+        Att4: {nom: "Sucette", dmg: 0}
     }, 2, 
     {
         GameDiv: "game",
@@ -269,7 +269,7 @@ async function game() {
 
         pablo.instantiateSprite(1050, 550);
         pablo.instantiateHealthBar("pablo-sprite", 20, -20);
-        instantiateSpeechBubble("pablo1", "Oh mon dieu ! Qu’est-ce donc cela ?!?", 850, 500, true);
+        instantiateSpeechBubble("pablo1", "Oh mon dieu ! Qu’est-ce donc cela ?!? *fuit*", 850, 500, true);
         await sleep(3000);
         deleteSpeechBubble("pablo1");
         document.getElementById("game").removeChild(document.getElementsByClassName("pablo-sprite")[0])
@@ -285,19 +285,19 @@ async function game() {
         instantiateSpeechBubble("dr1", "Bonjour, désolé de m’introduire si brusquement.", 300, 470, false);
         await sleep(3000);
         deleteSpeechBubble("dr1");
-        instantiateSpeechBubble("dr2", "Je me présente je suis le doc Shen, j’ai vu de quelle manière tu t’étais opposé à ce virus", 300, 470, false);
+        instantiateSpeechBubble("dr2", "Je me présente je suis le doc Shen, et je suis un chercheur en IST.", 300, 470, false);
         await sleep(3000);
         deleteSpeechBubble("dr2");
-        instantiateSpeechBubble("dr3", "Je souhaite que tu m’aides à récolter des infos sur les autres IST. Mais d’abord,tue moi celui-ci avec tes propres moyens. ", 300, 470, false);
+        instantiateSpeechBubble("dr3", "Je souhaite que tu m’aides à récolter des infos sur les autres IST. Mais d’abord, tue moi celle-ci avec tes propres moyens. ", 300, 470, false);
         await sleep(5000);
         deleteSpeechBubble("dr3");
 
         game = new Game(ennemy);
         game.startRound(1000, 50, 85, 225);
 
-        Gaetan.health = this.maxHealth;
-
     } else if (phase == 2) {
+
+        Gaetan.health = 10;
 
         instantiateSpeechBubble("dr1", "Je te félicite, même si cela était très simple … Ce que tu viens de battre est un Papillomavirus.", 300, 470, false);
         await sleep(5000);
@@ -322,7 +322,7 @@ async function game() {
         game.style.backgroundImage = `url("sprite/Hopital.png")`;
 
         instantiateSpeechBubble("heros2", "*décrit la maladie*", 250, 450, false);
-        await sleep(4000);
+        await sleep(2000);
         deleteSpeechBubble("heros2");
 
         instantiateSpeechBubble("dr5", "Hmm, je vois, c’était sûrement un VIH, l’un des virus les plus dangereux au monde.", 300, 470, false);
@@ -335,15 +335,128 @@ async function game() {
 
         game.style.backgroundImage = `url("sprite/Prairie.png")`;
 
+        Gaetan.attack["Att1"] = {nom: "Anticorps", dmg: 0};
+        Gaetan.attack["Att2"] = {nom: "Dioxyde de carbone", dmg: 0};
+        Gaetan.attack["Att3"] = {nom: "Valaciclovir", dmg: 2};
+        Gaetan.attack["Att4"] = {nom: "Paracétamol en poudre", dmg: 0};
 
+        ennemyId = "ennemy2";
 
-        Gaetan.health = this.maxHealth;
+        ennemy = new Ennemy(10, 1, 0, 
+            {
+                GameDiv: "game",
+                ClassDiv: "ennemy2",
+                Sprite: "sprite/Herpes.png"
+            });
+        
+        game = new Game(ennemy);
+        game.startRound(1000, 50, 20, 130);
 
     } else if (phase == 3) {
 
+        Gaetan.health = 10;
+
+        instantiateSpeechBubble("dr1", "Beau combat ! L’IST que vous venez de rencontrer est l'herpès, cette maladie est moins dangereuse que les autres.", 300, 470, false);
+        await sleep(4000);
+        deleteSpeechBubble("dr1");
+
+        instantiateSpeechBubble("dr2", "Elle fait seulement apparaître des cloques et des boutons  près de la bouche ou des organes génitaux, qui peuvent entraîner la mort mais bon …", 300, 470, false);
+        await sleep(4000);
+        deleteSpeechBubble("dr2");
+
+        game.style.backgroundImage = `url("sprite/Riviere.png")`;
+
+        Gaetan.attack["Att1"] = {nom: "Lopéramide chlorhydrate", dmg: 0};
+        Gaetan.attack["Att2"] = {nom: "Benzylpenicilline", dmg: 2};
+        Gaetan.attack["Att3"] = {nom: "Monoxyde de dihydrogène", dmg: 0};
+        Gaetan.attack["Att4"] = {nom: "Chlorhexidine digluconate", dmg: 0};
+
+        ennemyId = "ennemy3";
+
+        ennemy = new Ennemy(10, 1, 0, 
+            {
+                GameDiv: "game",
+                ClassDiv: "ennemy3",
+                Sprite: "sprite/Syphilis.png"
+            });
+        
+        game = new Game(ennemy);
+        game.startRound(1000, 150, 20, 100);
+
+    } else if (phase == 4) {
+
+        Gaetan.health = 10;
+
+        instantiateSpeechBubble("dr1", "Ce qu'on vient d'affronter, la syphilis, provoque des symptômes plutôt violents comme des ulcères, des éruptions cutanées ou de la fièvre.", 300, 470, false);
+        await sleep(4000);
+        deleteSpeechBubble("dr1");
+
+        instantiateSpeechBubble("dr2", "La dernière étape est devant nous, j'espère que tu es prêt ...", 300, 470, false);
+        await sleep(2000);
+        deleteSpeechBubble("dr2");
+
+        game.style.backgroundImage = `url("sprite/Volcan.png")`;
+
+        instantiateSpeechBubble("heros1", "Pablo34 c’est toi ?? Où étais tu passé  ?? ", 250, 450, false);
+        await sleep(2000);
+        deleteSpeechBubble("heros1");
+
+        pablo = new Heros(1, 1, 1, {
+            GameDiv: "game",
+            ClassDiv: "pablo",
+            Sprite: "sprite/Pablo34.png"
+        });
+
+        pablo.instantiateSprite(1050, 550);
+        pablo.instantiateHealthBar("pablo-sprite", 20, -20);
+
+        instantiateSpeechBubble("pab1", "Il y a 60 ans, le VIH était invincible et ne faisait que se renforcer au cours du temps menant à la mort de milliers de personnes.", 650, 500, true);
+        await sleep(4000);
+        deleteSpeechBubble("pab1");
+
+        instantiateSpeechBubble("heros2", "Mais de quoi tu parles ?? Je ne te reconnais plus ...", 250, 450, false);
+        await sleep(2000);
+        deleteSpeechBubble("heros2");
+
+        instantiateSpeechBubble("dr3", "Mais, cette voix ... je la reconnais ... C’est celle du VIH !", 300, 470, false);
+        await sleep(3000);
+        deleteSpeechBubble("dr3");
+
+        document.getElementById("game").removeChild(document.getElementsByClassName("pablo-sprite")[0])
+
+        ennemyId = "ennemy4";
+
+        Gaetan.attack["Att1"] = {nom: "Miracle", dmg: 10};
+        Gaetan.attack["Att2"] = {nom: "Miracle", dmg: 10};
+        Gaetan.attack["Att3"] = {nom: "Miracle", dmg: 10};
+        Gaetan.attack["Att4"] = {nom: "Miracle", dmg: 10};
+
+        ennemy = new Ennemy(10, 1, 0, 
+            {
+                GameDiv: "game",
+                ClassDiv: "ennemy4",
+                Sprite: "sprite/Sida.png"
+            });
+
+        instantiateSpeechBubble("dr4", "Oh purée de pomme de terre ! Bonne chance, je m’échappe ! *fuit*", 300, 470, false);
+        await sleep(3000);
+        deleteSpeechBubble("dr4");
+
+        document.getElementById("game").removeChild(document.getElementsByClassName("docteur-sprite")[0]);
+
+        game = new Game(ennemy);
+        game.startRound(1000, 50, 20, 130);
+    } else {
+
+        instantiateSpeechBubble("heros1", "J’ai enfin vengé ma femme, merci de m’avoir aidé Doc !", 250, 450, false);
+        await sleep(3000);
+        deleteSpeechBubble("heros1");
+
+        instantiateSpeechBubble("dr1", "*de loin* Haha, ce n'est rien !", 250, 450, true);
+        await sleep(3000);
+        deleteSpeechBubble("dr1");
     }
 }
-
 
 window.onload = async (event) => {
     await game();
