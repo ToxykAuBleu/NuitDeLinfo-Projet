@@ -21,9 +21,29 @@ function attackMenu() {
         var button = document.createElement("button");
         button.name = value["nom"];
         button.innerText = value["nom"];
+        button.onclick = function() {
+            console.log(value["nom"]);
+        }
         var attack = document.getElementsByClassName("attack")[0];
         attack.appendChild(button);
     };
+}
+
+function switchMain() {
+    var select = document.getElementsByClassName("select")[0];
+    var attack = document.getElementsByClassName("attack")[0];
+    console.log(select, attack);
+    if (select.style.visibility == "visible") {
+        select.style.visibility = "hidden";
+        attack.style.visibility = "visible";
+        select.className = "menu-off select";
+        attack.className = "menu-on attack";
+    } else {
+        attack.style.visibility = "hidden";
+        select.style.visibility = "visible";
+        attack.className = "menu-off attack"
+        select.className = "menu-on select"
+    }
 }
 
 /**
