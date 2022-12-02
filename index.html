@@ -6,7 +6,7 @@
         <title>Informations sida</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     </head>
-    <body>
+    <body class="bg-secondary text-white">
 
      <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner" style="display: inline-block;">
@@ -32,50 +32,182 @@
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="image/ImageVIH.jpg" alt="Image du VIH">
+                    <div class="card shadow-sm bg-dark" data-bs-toggle="modal" data-bs-target="#modalVIH" role="button">
+                        <img src="image/ImageVIH.jpg" alt="Image du VIH" class="card-img-top">
                         <div class="card-body">
                             <h1 class="card-title">VIH</h1>
                         </div>
+                        <div class="modal fade" id="modalVIH" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body text-dark">
+                                        <p>Le virus de l'immunodéficience humaine ou VIH-1, (en anglais, human immunodeficiency viruses-1 ou HIV-1) est une
+                                            espèce de rétrovirus infectant l'humain et responsable du syndrome d'immunodéficience acquise (sida),
+                                            qui est un état affaibli du système immunitaire le rendant vulnérable à de multiples infections opportunistes.</p>
+                                        <p>La transmission du vih par plusieurs fluides corporels (sang, sécrétions vaginales, sperme ou lait maternel)
+                                            fait que le sida est aujourd'hui considéré comme une pandémie ayant causé la mort d'environ 32 millions de
+                                            personnes entre 1981 (date de la première identification de cas de sida) et 2018.</p>
+                                        <p>Bien qu'il existe des traitements antirétroviraux luttant contre le VIH et retardant par conséquent
+                                            l'apparition du sida, réduisant ainsi la mortalité et la morbidité, il n'existe à l'heure actuelle
+                                            aucun vaccin ou traitement définitif. Le moyen de lutte le plus efficace reste donc la prévention,
+                                            qui passe notamment par les rapports sexuels protégés et la connaissance de son statut sérologique
+                                            de manière à éviter d'infecter autrui.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="image/ImageSyphillis.jpg" alt="Image de la Syphillis">
+                    <div class="card shadow-sm bg-dark" data-bs-toggle="modal" data-bs-target="#modalSyphilis" role="button">
+                        <img src="image/ImageSyphillis.jpg" alt="Image de la Syphillis" class="card-img-top">
                         <div class="card-body">
                             <h1 class="card-title">Syphilis</h1>
                         </div>
+                        <div class="modal fade" id="modalSyphilis" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body text-dark">
+                                        <p>La syphilis (connue familièrement sous le nom de vérole ou encore de grande vérole par opposition à la variole)
+                                            est une infection sexuellement transmissible contagieuse, due à la bactérie Treponema pallidum (ou tréponème pâle).
+                                            Elle se manifeste par un chancre (ulcération) initial et par des atteintes viscérales et nerveuses tardives,
+                                            certaines manifestations survenant plusieurs années après la contamination. L'évolution de la maladie se fait donc
+                                            en stades successifs, classiquement trois, aujourd'hui différenciée entre stade précoce et tardif.</p>
+                                        <p>Le tréponème pâle a été identifié par Fritz Schaudinn et Erich Hoffmann à Berlin en 1905. Mais la maladie,
+                                            volet de l'échange colombien, a été décrite dès la fin du xve siècle. Le mercure fut le remède pluricentenaire,
+                                            même si son efficacité n'a jamais été démontrée. Le traitement réel apparaît au début des années 1940,
+                                            avec l'avènement des antibiotiques, en particulier l'usage de la pénicilline.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="image/ImageHerpes.jpg" alt="Image de l'herpès'">
+                    <div class="card shadow-sm bg-dark" data-bs-toggle="modal" data-bs-target="#modalHerpes" role="button">
+                        <img src="image/ImageHerpes.jpg" alt="Image de l'herpès'" class="card-img-top">
                         <div class="card-body">
                             <h1 class="card-title">Herpès</h1>
                         </div>
+                        <div class="modal fade" id="modalHerpes" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body text-dark">
+                                        <p>L'herpès est une maladie virale, contagieuse (sexuellement transmissible si l'herpès est HSV2 ou par simple
+                                            contact buccal si HSV1), et responsable d'affection de la peau, des muqueuses et parfois du système nerveux,
+                                            caractérisée par des crises d'éruption vésiculeuse de boutons groupés. Ces crises d'une quinzaine de jours sont
+                                            plus ou moins espacées dans le temps ; elles sont déclenchées par de nombreux facteurs, dont une baisse de
+                                            l'immunité, souvent par un stress, et parfois par l'exposition au soleil. La maladie est jugée bénigne
+                                            chez les sujets en bonne santé, mais peut se révéler très sérieuse chez l'immunodéprimé, le nouveau-né ou la
+                                            femme enceinte.</p>
+                                        <p>L'herpès, parfois vécu péniblement, n'est jamais totalement guéri. Il impose donc au porteur de prendre des
+                                            précautions, y compris hors des périodes de crises où il reste potentiellement contagieux.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="image/ImageHepatiteB.jpg" alt="Image de l'hépatite B'">
+                    <div class="card shadow-sm bg-dark" data-bs-toggle="modal" data-bs-target="#modalHepatiteB" role="button">
+                        <img src="image/ImageHepatiteB.jpg" alt="Image de l'hépatite B'" class="card-img-top">
                         <div class="card-body">
                             <h1 class="card-title">Hépatite B</h1>
                         </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="image/ImagePapillomavirus.jpg" alt="Image du papillomavirus'">
-                        <div class="card-body">
-                            <h1 class="card-title">Papillomavirus</h1>
+                        <div class="modal fade" id="modalHepatiteB" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body text-dark">
+                                        <p>L'hépatite B est une hépatite virale due à une infection par le virus de l'hépatite B (VHB) et entraînant une
+                                            inflammation du foie.</p>
+                                        <p>Les symptômes de la maladie aiguë sont essentiellement une inflammation du foie, avec ou sans ictère et des
+                                            troubles digestifs avec nausées et vomissements. À ce stade l’évolution est souvent bénigne même si l’hépatite B
+                                            est la forme la plus grave des hépatites virales. Cependant, il existe bien que rarement, des formes fulminantes
+                                            à évolution mortelle. L'infection passe souvent inaperçue lors de l'infection aiguë et chez le patient porteur du
+                                            virus. Dans près d'un cas sur dix, l'hépatite B aiguë ne guérit pas et devient une infection chronique.
+                                            Le porteur chronique n'a pas de symptôme apparent mais est susceptible de contaminer son entourage.
+                                            En cas d'hépatite chronique active, les symptômes peuvent être une fièvre modérée, une grande fatigue,
+                                            des troubles digestifs (nausées, vomissements, douleurs abdominales), une jaunisse, des urines foncées
+                                            ou des selles décolorées.</p>
+                                        <p>
+                                            La transmission du virus se fait par l'intermédiaire des liquides et sécrétions biologiques.
+                                            Les principaux modes de transmission sont les rapports sexuels, les injections chez les toxicomanes,
+                                            les transfusions sanguines à risques, la transmission de la mère à l'enfant lors de l'accouchement et
+                                            le contact étroit avec une personne infectée. Une fois dans le sang, le virus atteint le foie et
+                                            se multiplie dans ses cellules, les hépatocytes. Le système immunitaire détruit les cellules infectées,
+                                            entraînant une inflammation du foie.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="image/ImageChlamydia.jpg" alt="Image de la chlamydia'">
+                    <div class="card shadow-sm bg-dark" data-bs-toggle="modal" data-bs-target="#modalPapillomavirus" role="button">
+                        <img src="image/ImagePapillomavirus.jpg" alt="Image du papillomavirus'" class="card-img-top">
+                        <div class="card-body">
+                            <h1 class="card-title">Papillomavirus</h1>
+                        </div>
+                        <div class="modal fade" id="modalPapillomavirus" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body text-dark">
+                                        <p>Le papillomavirus humain (PVH) ou virus du papillome humain (VPH, en anglais human papillomavirus, HPV)
+                                            est un virus à ADN de la famille des Papillomaviridae. On en connaît environ 200 génotypes différents ;
+                                            certains se transmettent par contact cutané et infectent la peau, d'autres potentiellement plus dangereux
+                                            sont sexuellement transmissibles.</p>
+                                        <p>Les manifestations cliniques de la contamination sexuelle les plus visibles sont les condylomes acuminés
+                                            (dits également « verrues génitales », « végétations vénériennes » ou « crêtes de coq »), 
+                                            décrits par Hippocrate. Elles sont principalement dues aux HPV 6 et 11. Dans un premier temps,
+                                            cette infection régresse spontanément dans 90 % des cas mais peut réapparaître par la suite tout au long
+                                            de la vie une fois la personne infectée2. Chez des personnes pour lesquelles le virus est toujours présent
+                                            deux ans après l'infection, celle-ci, lorsqu'elle est due à certains génotypes
+                                            (notamment les HPV 16, 18, 31, 33 et 35), évolue en cancer du col de l'utérus dans 5 % des cas.
+                                            Cette découverte a valu à Harald zur Hausen le Prix Nobel de physiologie ou médecine en 2008,
+                                            puis on a constaté que 25 % environ des cancers à papillomavirus surviennent chez les hommes
+                                            (dans la sphère ORL surtout, de l’anus et du pénis).</p>
+                                        <p>Le préservatif n'est que peu efficace contre le papillomavirus humain ; la vaccination est de ce fait la seule
+                                            prophylaxie efficace et recommandée par les autorités de santé. Si elle cible les souches les plus dangereuses
+                                            pour l'homme, elle ne protège toutefois pas contre tous les variants du virus et est inefficace sur les personnes
+                                            déjà infectées. Le dépistage du cancer du col utérin, assorti d'un traitement en cas de présence de cellules
+                                            précancéreuses ou cancéreuses, est un moyen efficace afin de diminuer le risque une fois l'infection contractée.
+                                            Cette dernière peut être récidivante tout au long de la vie de la personne infectée. Des frottis de dépistage
+                                            réguliers sont indispensables en complément des vaccins. En place depuis 2005, la vaccination préventive des
+                                            adolescentes contre ce type de virus vise à réduire la prévalence de ce cancer. En France, la vaccination est
+                                            recommandée entre 11 et 14 ans alors que l'OMS la recommande entre 9 et 13 ans, mais un rattrapage peut avoir lieu
+                                            jusqu'à 19 ans. Depuis 2019, l'OMS recommande le vaccin aux jeunes hommes aux mêmes âges que les jeunes femmes,
+                                            entre 11 et 14 ans avec un rattrapage jusqu'à 19 ans.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm bg-dark" data-bs-toggle="modal" data-bs-target="#modalChlamydia" role="button">
+                        <img src="image/ImageChlamydia.jpg" alt="Image de la chlamydia'" class="card-img-top">
                         <div class="card-body">
                             <h1 class="card-title">Chlamydia</h1>
+                        </div>
+                        <div class="modal fade" id="modalChlamydia" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body text-dark">
+                                        <p>On désigne habituellement sous le terme de chlamydiose les infections en rapport avec l'agent infectieux du genre
+                                            Chlamydia comme Chlamydia trachomatis ou Chlamydophila psittaci. C. trachomatis est la cause d'une infection
+                                            sexuellement transmissible. Les sérotypes D à K des Chlamydia sont responsables des infections qui se manifestent
+                                            par des conjonctivites.</p>
+                                        <p>Cette bactérie est à transmission inter-humaine stricte. 4 % des jeunes au minimum sont atteints,
+                                            conduisant certains pays à faire un dépistage systématique en raison des coûts des complications
+                                            de l'infection génitale à Chlamydia trachomatis responsable d'infertilité par destruction de l'épithéliumde
+                                            la trompe entraînant une augmentation du nombre de grossesses extra-utérines.</p>
+                                        <p>Cette infection est le plus souvent silencieuse et ce n'est que lors des investigations effectuées dans le
+                                            cadre d'un bilan d'une infertilitéque cette infection (ou du moins ses séquelles) est découverte.
+                                            Le diagnostic est grandement facilité parla recherche directe des acides nucléiques de la bactérie par
+                                            amplification génique (PCR).</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +217,7 @@
 
     <footer class="text-center text-lg-start text-muted">
         <section class="">
-            <div class="container text-center text-md-start mt-5">
+            <div class="container text-center text-md-start mt-5 text-white">
                 <!-- Grid row -->
                 <div class="row mt-3">
                     <!-- Grid column -->
@@ -131,15 +263,15 @@
                 <div class="col-md-4 col-lg-3 col-xl-4 mx-auto mb-md-0 mb-4">
                   <!-- Links -->
                   <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                  <p><i class="fas fa-phone me-3"></i> + 0 800 840 800</p>
-                  <p><i class="fas fa-print me-3"></i> + 0 810 636 636</p>
+                  <p><i class="fas fa-phone me-3"></i>+0 800 840 800</p>
+                  <p><i class="fas fa-print me-3"></i>+0 810 636 636</p>
                 </div>
                 <!-- Grid column -->
               </div>
               <!-- Grid row -->
             </div>
           </section>
-        <div class="text-center p-4">Site crée suite à la nuit de l'info.</div>
+        <div class="text-center p-4 text-white">Site crée suite à la nuit de l'info.</div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
